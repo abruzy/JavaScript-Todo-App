@@ -10,12 +10,12 @@ html, body {
 
 .container {
   padding: 10px;
-  width: 380px;
+  width: 600px;
   margin: 50px auto;
 }
 
 .header {
-  width: 380px;
+  width: 600px;
   height: 200px;
   background-image: url('../img/bg.jpg');
   background-size: 100% 200%;
@@ -54,7 +54,7 @@ html, body {
 }
 
 .content {
-  width: 380px;
+  width: 600px;
   height: 350px;
   max-height: 350px;
   background-color: #fff;
@@ -71,7 +71,7 @@ html, body {
 }
 
 .item {
-  width: 380px;
+  width: 600px;
   height: 45px;
   max-height: 45px;
   position: relative;
@@ -101,7 +101,20 @@ html, body {
   background-color: #fff;
   left: 50px;
   top: 8px;
-  max-width: 285px;
+  max-width: 400px;
+}
+
+.item i.ed {
+  position: absolute;
+  font-size: 25px;
+  top: 10px;
+  right: 55px;
+}
+
+.item i.ed:hover {
+  color: #4162f6;
+  cursor: pointer;
+  transition: all ease-in-out .3s;
 }
 
 .item i.de {
@@ -119,7 +132,7 @@ html, body {
 
 .add-to-do {
   position: relative;
-  width: 360px;
+  width: 580px;
   height: 40px;
   background-color: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
