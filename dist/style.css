@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h3 {
+  color: white;
+  font-size: 2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hero {
+  background-image: url("../img/todo.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 420px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.button {
+  border: 2px solid white;
+  border-radius: none;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.book__title {
+  color: #000;
+  font-size: 0.2rem;
+  font-weight: 500;
+  background-color: lightgray;
+  padding: 0.3rem;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/*** Modal Section Styles ***/
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+  position: fixed;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.modal-content .title {
+  color: #000;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.modal-content button {
+  width: 6rem;
+}
+
+/*** Table Section ***/
+
+table {
+  max-width: 100%;
+  width: 750px;
+  border-collapse: collapse;
+  margin: 50px auto;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+th {
+  background: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 18px;
+  width: auto;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  table {
+    width: 100%;
+  }
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    /* Label the data */
+    content: attr(data-column);
+
+    color: #000;
+    font-weight: bold;
+  }
+}
