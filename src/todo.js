@@ -1,7 +1,6 @@
 const myTodo = [];
 
 function toDo(title, description, date) {
-
   return {
     title,
     description,
@@ -19,14 +18,12 @@ function getLocalStorage() {
   return JSON.parse(ls);
 }
 
-console.log(getLocalStorage());
-
 function checkStorage() {
   if (getLocalStorage() == null) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
 function refreshPage() {
@@ -35,12 +32,12 @@ function refreshPage() {
 
 function saveTodo(todo) {
   if (checkStorage()) {
-    const ls = getLocalStorage()
-    ls.push(todo)
-    setLocalStorage(ls)
+    const ls = getLocalStorage();
+    ls.push(todo);
+    setLocalStorage(ls);
   } else {
-    myTodo.push(todo)
-    setLocalStorage(myTodo)
+    myTodo.push(todo);
+    setLocalStorage(myTodo);
   }
 
   refreshPage();
@@ -93,6 +90,52 @@ function deleteToDo(index) {
   });
 }
 
+function updateToDo(todoId) {
+  const [titleVal, descVal, dateVal] = getInputValue();
+  const validateInput = validate(titleVal, descVal, dateVal);
+
+  if (validateInput) {
+    const ls = getLocalStorage();
+    const todo = ls[todoId];
+    todo.title = titleVal;
+    todo.description = descVal;
+    todo.date = dateVal;
+    ls[todoId] = todo;
+    setLocalStorage(ls);
+    refreshPage();
+  }
+}
+
+function getAToDo(todoId) {
+  const ls = getLocalStorage();
+  const todo = ls[todoId];
+  return todo;
+}
+
+function populateEditForm(todo) {
+  document.getElementById('title').value = todo.title;
+  document.getElementById('description').value = todo.description;
+  document.getElementById('date').value = todo.date;
+  document.querySelector('.bg-modal').style.display = 'flex';
+}
+
+function editToDo(index) {
+  document.querySelector(`.edit-${index}`).addEventListener('click', function editButton() {
+    const todoId = this.getAttribute('data-id');
+    const query = document.querySelector('.general-button');
+    query.removeEventListener('click', addTodo);
+    query.removeAttribute('id');
+    query.setAttribute('id', 'edit');
+    query.innerHTML = 'Update';
+    const todo = getAToDo(todoId);
+    populateEditForm(todo);
+
+    document.getElementById('edit').addEventListener('click', () => {
+      updateToDo(index);
+    });
+  });
+}
+
 function displayTable() {
   const ls = getLocalStorage();
   ls.forEach((element, index) => {
@@ -103,11 +146,11 @@ function displayTable() {
       <td data-column="description">${element.description}</td>
       <td data-column="date">${element.date}</td>
       <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
-        <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
+      <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
     `;
     document.querySelector('tbody').appendChild(tr);
     deleteToDo(index);
-    // editTodo(index);
+    editToDo(index);
   });
 }
 
