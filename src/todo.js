@@ -1,22 +1,26 @@
 const myTodo = [];
 
-function toDo(title, description, date) {
+function toDo(title, description, date, done = false) {
   return {
     title,
     description,
     date,
+    done,
   };
 }
 
 function setLocalStorage(data) {
-  localStorage.setItem('myTodo', JSON.stringify(data, null, 2));
+  localStorage.setItem('myTodo', JSON.stringify(data));
 }
 
 function getLocalStorage() {
-  const ls = localStorage.getItem('myTodo');
+  const ls = localStorage.getItem('myTodo', null, 2);
 
   return JSON.parse(ls);
 }
+
+
+console.log(getLocalStorage());
 
 function checkStorage() {
   if (getLocalStorage() == null) {
@@ -136,19 +140,71 @@ function editToDo(index) {
   });
 }
 
+function addStrike(index) {
+  document.querySelectorAll(`.text-${index}`).forEach((element) => {
+    element.classList.add('lineThrough');
+  });
+  const ls = getLocalStorage();
+  ls[index].done = true;
+  setLocalStorage(ls);
+}
+
+function removeStrike(index) {
+  document.querySelectorAll(`.text-${index}`).forEach((element) => {
+    element.classList.remove('lineThrough');
+  });
+  const ls = getLocalStorage();
+  ls[index].done = false;
+  setLocalStorage(ls);
+}
+
+function onPageLoad() {
+  const ls = getLocalStorage();
+  ls.forEach((element, index) => {
+    if (element.done === true) {
+      addStrike(index);
+    } else {
+      removeStrike(index);
+    }
+  });
+}
+
+function doneState(index) {
+  document.querySelector(`.done-${index}`).addEventListener('click', function strikeThrough() {
+    const dataDone = this.getAttribute('data-done');
+    console.log(dataDone);
+    if (dataDone === false) {
+      // addStrike(index);
+      this.setAttribute('data-done', 'true');
+      const data = this.getAttribute('data-done');
+      console.log(data);
+    } else {
+      // removeStrike(index);
+      this.setAttribute('data-done', 'false');
+      const data = this.getAttribute('data-done');
+      console.log(data);
+    }
+    // refreshPage();
+  });
+}
+
+
 function displayTable() {
   const ls = getLocalStorage();
+
   ls.forEach((element, index) => {
     const tr = document.createElement('TR');
     tr.setAttribute('class', `todo-${index}`);
     tr.innerHTML = `
-      <td data-column="title">${element.title}</td>
-      <td data-column="description">${element.description}</td>
-      <td data-column="date">${element.date}</td>
+      <td data-column="title" class="text-${index}">${element.title}</td>
+      <td data-column="description" class="text-${index}">${element.description}</td>
+      <td data-column="date" class="text-${index}">${element.date}</td>
       <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
       <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
+      <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index}">Done</a></td>
     `;
     document.querySelector('tbody').appendChild(tr);
+    doneState(index);
     deleteToDo(index);
     editToDo(index);
   });
@@ -156,4 +212,4 @@ function displayTable() {
 
 displayTable();
 
-export default addTodo;
+export { addTodo, onPageLoad };

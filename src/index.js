@@ -1,4 +1,4 @@
-import addTodo from './todo';
+import { addTodo, onPageLoad } from './todo';
 
 document.getElementById('button').addEventListener('click',
   () => {
@@ -13,3 +13,5 @@ document.querySelector('.close').addEventListener('click',
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('add').addEventListener('click', addTodo);
 });
+
+document.addEventListener('load', onPageLoad());

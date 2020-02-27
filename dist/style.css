@@ -133,6 +133,11 @@ th {
   width: auto;
 }
 
+.lineThrough {
+  text-decoration: line-through;
+  color : #ccc;
+}
+
 .error-message {
   color: red;
   font-size: 18px;
