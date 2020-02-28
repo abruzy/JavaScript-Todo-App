@@ -51,26 +51,33 @@ function getInputValue() {
   const titleVal = document.getElementById('title').value;
   const descVal = document.getElementById('description').value;
   const dateVal = document.getElementById('date').value;
+  const projectId = document.getElementById('select-project').value;
+  const priorityVal = document.getElementById('priority').value;
 
-  return [titleVal, descVal, dateVal];
+  return [titleVal, descVal, dateVal, priorityVal, projectId];
 }
 
-function validate(titleVal, descVal, dateVal) {
-  if (titleVal === '' || descVal === '' || dateVal === '') {
+function validate(titleVal, descVal, dateVal, priorityVal, projectId) {
+  if (titleVal === ''
+    || descVal === ''
+    || dateVal === ''
+    || projectId === ''
+    || priorityVal === '') {
+
     return false;
   }
   return true;
 }
 
 function addTodo() {
-  const [titleVal, descVal, dateVal] = getInputValue();
+  const [titleVal, descVal, dateVal, priorityVal, projectId] = getInputValue();
 
   const validateInput = validate(titleVal, descVal, dateVal);
 
   if (validateInput) {
     document.querySelector('.bg-modal').style.display = 'none';
 
-    const newTodo = toDo(titleVal, descVal, dateVal);
+    const newTodo = toDo(titleVal, descVal, dateVal, priorityVal, projectId);
 
     saveTodo(newTodo);
   }
@@ -199,6 +206,8 @@ function displayTable() {
       <td data-column="title" class="text-${index}">${element.title}</td>
       <td data-column="description" class="text-${index}">${element.description}</td>
       <td data-column="date" class="text-${index}">${element.date}</td>
+      <td data-column="date" class="text-${index}">${element.priority}</td>
+      <td data-column="date" class="text-${index}">${element.projectId}</td>
       <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
       <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
       <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index}">Done</a></td>
@@ -210,6 +219,6 @@ function displayTable() {
   });
 }
 
-// displayTable();
+displayTable();
 
 export { addTodo, onPageLoad };

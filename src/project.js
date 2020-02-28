@@ -59,9 +59,11 @@ const addProject = (name) => {
   ol.setAttribute('class', 'project')
   ps.forEach((element, index) => {
     const li = document.createElement('LI')
-    li.innerHTML = `<a href="#" data-id="${index}">${element.name}</a>`
+    li.innerHTML = `<a href="#" class="project-${index}" data-id="${index}">${element.name}</a>`
     ol.appendChild(li);
+
   });
   projectDiv.appendChild(ol);
 })();
+
 export default addProject;

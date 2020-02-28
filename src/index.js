@@ -7,6 +7,7 @@ document.getElementById('task-button').addEventListener('click',
     document.querySelector('.task-modal').style.display = 'flex';
     const select = document.createElement('SELECT');
     select.setAttribute('class', 'custom-select')
+    select.setAttribute('id', 'select-project')
     const ps = ProjectStorage().getProject();
     ps.forEach((element, index) => {
       const option = document.createElement('OPTION');
@@ -24,11 +25,10 @@ document.querySelector('.close').addEventListener('click',
     document.querySelector('.bg-modal').style.display = 'none';
   });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   document.getElementById('add').addEventListener('click', addTodo);
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('add').addEventListener('click', addTodo);
+});
 
-// document.addEventListener('load', onPageLoad());
 
 document.querySelector('.add-project').addEventListener('click', () => {
   document.querySelector('.project-modal').style.display = 'flex';
@@ -44,3 +44,9 @@ document.querySelector('.project-button').addEventListener('click', () => {
   refreshPage();
 });
 
+document.querySelectorAll('li').forEach(element => {
+  const a = element.innerHTML;
+  // a.addEventListener('click', function(){
+  //   console.log(this)
+  // })
+});
