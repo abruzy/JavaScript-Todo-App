@@ -1,6 +1,16 @@
-import ProjectStorage from './taskstorage'
+import ProjectStorage from './projectstorage'
 
-const todoProjects = [];
+const todoProjects = [
+  {
+    name: 'Food'
+  },
+  {
+    name: 'Clothing'
+  },
+  {
+    name: ' Shelter'
+  }
+];
 
 const Project = (name) => {
   return {
@@ -10,7 +20,7 @@ const Project = (name) => {
 
 const localStorage = () => {
   const projects = ProjectStorage().getProject();
-  if (project !== null) {
+  if (projects !== null) {
     return true
   }
 
@@ -19,14 +29,14 @@ const localStorage = () => {
 
 const saveProject = (name) => {
   const project = Project(name);
-
+  const ps = ProjectStorage();
   if (localStorage()) {
-    const projects = ProjectStorage().getProject();
+    const projects = ps.getProject();
     projects.push(project);
-    ProjectStorage.setProject(projects); F
+    ps.setProject(projects);
   } else {
     todoProjects.push(project);
-    ProjectStorage.setProject(todoProjects);
+    ps.setProject(todoProjects);
   }
 }
 
@@ -37,8 +47,21 @@ const validate = (name) => {
     saveProject(name);
   }
 }
+
 const addProject = (name) => {
   validate(name)
 }
 
+(function showProjejcts(params) {
+  const projectDiv = document.querySelector('.project-node');
+  const ps = ProjectStorage().getProject();
+  const ol = document.createElement('OL');
+  ol.setAttribute('class', 'project')
+  ps.forEach((element, index) => {
+    const li = document.createElement('LI')
+    li.innerHTML = `<a href="#" data-id="${index}">${element.name}</a>`
+    ol.appendChild(li);
+  });
+  projectDiv.appendChild(ol);
+})();
 export default addProject;

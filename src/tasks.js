@@ -1,11 +1,13 @@
 const myTodo = [];
 
-function toDo(title, description, date, done = false) {
+function toDo(title, description, date, priority, projectId, done = false) {
   return {
     title,
     description,
     date,
     done,
+    projectId,
+    priority,
   };
 }
 
@@ -19,8 +21,6 @@ function getLocalStorage() {
   return JSON.parse(ls);
 }
 
-
-console.log(getLocalStorage());
 
 function checkStorage() {
   if (getLocalStorage() == null) {
@@ -210,6 +210,6 @@ function displayTable() {
   });
 }
 
-displayTable();
+// displayTable();
 
 export { addTodo, onPageLoad };

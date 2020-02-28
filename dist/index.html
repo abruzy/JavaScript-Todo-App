@@ -18,7 +18,7 @@
     <div class="hero-content">
       <h1>Organizing maketh a man</h1>
       <h3>Organize your task, by adding ToDo</h3>
-      <a href="#" id="button" class="button">Add a ToDo</a>
+      <a href="#" id="task-button" class="button">Add a ToDo</a>
     </div>
   </section>
 
@@ -56,17 +56,17 @@
   <div class="bg-modal project-modal">
     <div class="modal-content">
       <div class="close">+</div>
-      <h3 class="title text-center">Add a new Task</h3>
+      <h3 class="title text-center">Add a new Project</h3>
       <form onsubmit="event.preventDefault();" autocomplete="off">
         <div class="error-message"></div>
         <div class="form-group">
           <label for="date">Project Name</label>
-          <input type="date" class="form-control" name="project-name" id="project-name" required>
+          <input type="text" class="form-control" name="project-name" id="project-name" required>
         </div>
 
         <div class="form-group">
           <div class="text-center">
-            <button type="button" class="center-align btn btn-outline-success project-button" id="add">Add</button>
+            <button type="button" class="center-align btn btn-outline-success project-button">Add</button>
           </div>
         </div>
       </form>
@@ -79,13 +79,8 @@
         <div class="col-md-6">
           <a href="#" class="project add-project"><i class="fas fa-plus"></i></a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 project-node">
           <h5 class="project">Projects</h5>
-          <ol class="project">
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Clothing</a></li>
-            <li><a href="#">Shelter</a></li>
-          </ol>
         </div>
       </div>
     </div>
