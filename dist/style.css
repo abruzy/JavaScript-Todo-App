@@ -108,7 +108,6 @@ a {
 
 table {
   max-width: 100%;
-  width: 750px;
   border-collapse: collapse;
   margin: 50px auto;
 }
@@ -133,6 +132,12 @@ th {
   width: auto;
 }
 
+.project {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
 .lineThrough {
   text-decoration: line-through;
   color : #ccc;
@@ -143,6 +148,8 @@ th {
   font-size: 18px;
   font-weight: bold;
 }
+
+
 
 /* 
 Max width before this PARTICULAR table gets nasty

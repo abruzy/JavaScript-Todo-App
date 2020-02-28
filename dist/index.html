@@ -24,7 +24,7 @@
 
   <!-- Modal Section -->
 
-  <div class="bg-modal">
+  <div class="bg-modal task-modal">
     <div class="modal-content">
       <div class="close">+</div>
       <h3 class="title text-center">Add a new Task</h3>
@@ -53,21 +53,58 @@
     </div>
   </div>
 
-  <!-- Table Section -->
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Complete</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div class="bg-modal project-modal">
+    <div class="modal-content">
+      <div class="close">+</div>
+      <h3 class="title text-center">Add a new Task</h3>
+      <form onsubmit="event.preventDefault();" autocomplete="off">
+        <div class="error-message"></div>
+        <div class="form-group">
+          <label for="date">Project Name</label>
+          <input type="date" class="form-control" name="project-name" id="project-name" required>
+        </div>
 
+        <div class="form-group">
+          <div class="text-center">
+            <button type="button" class="center-align btn btn-outline-success project-button" id="add">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Table Section -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <a href="#" class="project add-project"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="col-md-6">
+          <h5 class="project">Projects</h5>
+          <ol class="project">
+            <li><a href="#">Food</a></li>
+            <li><a href="#">Clothing</a></li>
+            <li><a href="#">Shelter</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Complete</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
   <script src="main.js"></script>
 </body>
 
