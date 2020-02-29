@@ -168,22 +168,11 @@ function removeStrike(index) {
   setLocalStorage(ls);
 }
 
-function onPageLoad() {
-  const ls = getLocalStorage();
-  ls.forEach((element, index) => {
-    if (element.done === true) {
-      addStrike(index);
-    } else {
-      removeStrike(index);
-    }
-  });
-}
-
 function doneState(index) {
   document.querySelector(`.done-${index}`).addEventListener('click', function strikeThrough() {
     const dataDone = this.getAttribute('data-done');
     const parsedData = JSON.parse(dataDone);
-\    if (parsedData === false) {
+    if (parsedData === false) {
       addStrike(index);
       this.setAttribute('data-done', 'true');
     } else {
@@ -209,7 +198,7 @@ function displayTable(projectId) {
         <td data-column="date" class="text-${index}">${element.projectId}</td>
         <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
         <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
-        <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index}">Done</a></td>
+        <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index} done">Done</a></td>
       `;
       document.querySelector('tbody').appendChild(tr);
       doneState(index);
@@ -219,4 +208,4 @@ function displayTable(projectId) {
   });
 }
 
-export { addTodo, displayTable };
+export { addTodo, displayTable, addStrike, removeStrike };

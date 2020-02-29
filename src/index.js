@@ -1,4 +1,4 @@
-import { addTodo, displayTable } from './tasks';
+import { addTodo, displayTable, addStrike, removeStrike } from './tasks';
 import addProject from './project';
 import ProjectStorage from './projectstorage';
 
@@ -44,6 +44,17 @@ document.querySelector('.project-button').addEventListener('click', () => {
   refreshPage();
 });
 
+const strickThroughOnPageLoad = () => {
+  const doneButtons = document.querySelectorAll('.done');
+  doneButtons.forEach((element) => {
+    const doneState = element.getAttribute('data-done');
+    const id = element.getAttribute('data-id');
+    if (JSON.parse(doneState) === true) {
+      addStrike(id)
+    }
+  });
+}
+
 document.querySelectorAll('li').forEach(element => {
   const a = element.firstChild;
   a.addEventListener('click', function () {
@@ -51,5 +62,6 @@ document.querySelectorAll('li').forEach(element => {
     const tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
     document.addEventListener('DOMContentLoaded', displayTable(projectId));
+    strickThroughOnPageLoad();
   })
 });
