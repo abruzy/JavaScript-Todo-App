@@ -1,17 +1,5 @@
 import ProjectStorage from './projectstorage';
 
-const todoProjects = [
-  {
-    name: 'Food',
-  },
-  {
-    name: 'Clothing',
-  },
-  {
-    name: ' Shelter',
-  },
-];
-
 const Project = (name) => ({
   name,
 });
@@ -33,8 +21,9 @@ const saveProject = (name) => {
     projects.push(project);
     ps.setProject(projects);
   } else {
-    todoProjects.push(project);
-    ps.setProject(todoProjects);
+    const tP = ProjectStorage().todoProjects;
+    tP.push(project);
+    ps.setProject(tP);
   }
 };
 
