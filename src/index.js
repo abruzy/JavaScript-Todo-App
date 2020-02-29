@@ -1,23 +1,27 @@
-import { addTodo, displayTable, addStrike, removeStrike } from './tasks';
-import addProject from './project';
 import ProjectStorage from './projectstorage';
+import addProject from './project';
+import { addTodo, displayTable, addStrike, removeStrike } from './tasks';
+
+
+const appendProject = () => {
+  const select = document.createElement('SELECT');
+  select.setAttribute('class', 'custom-select')
+  select.setAttribute('id', 'select-project')
+  const ps = ProjectStorage().getProject();
+  ps.forEach((element, index) => {
+    const option = document.createElement('OPTION');
+    option.setAttribute('value', `${index}`);
+    option.innerHTML = `${element.name}`;
+    select.appendChild(option);
+  });
+
+  const selectDiv = document.querySelector('.projects-select')
+  selectDiv.appendChild(select);
+}
 
 document.getElementById('task-button').addEventListener('click',
   () => {
     document.querySelector('.task-modal').style.display = 'flex';
-    const select = document.createElement('SELECT');
-    select.setAttribute('class', 'custom-select')
-    select.setAttribute('id', 'select-project')
-    const ps = ProjectStorage().getProject();
-    ps.forEach((element, index) => {
-      const option = document.createElement('OPTION');
-      option.setAttribute('value', `${index}`);
-      option.innerHTML = `${element.name}`;
-      select.appendChild(option);
-    });
-
-    const selectDiv = document.querySelector('.projects-select')
-    selectDiv.appendChild(select);
   });
 
 document.querySelector('.close').addEventListener('click',

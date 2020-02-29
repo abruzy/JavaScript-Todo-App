@@ -1,3 +1,5 @@
+import ProjectStorage from './projectstorage';
+
 const myTodo = [];
 
 function toDo(title, description, date, priority, projectId, done = false) {
@@ -124,12 +126,28 @@ function getAToDo(todoId) {
   return todo;
 }
 
+const appendProject = () => {
+  const select = document.createElement('SELECT');
+  select.setAttribute('class', 'custom-select');
+  select.setAttribute('id', 'select-project');
+  const ps = ProjectStorage().getProject();
+  ps.forEach((element, index) => {
+    const option = document.createElement('OPTION');
+    option.setAttribute('value', `${index}`);
+    option.innerHTML = `${element.name}`;
+    select.appendChild(option);
+  });
+
+  const selectDiv = document.querySelector('.projects-select');
+  selectDiv.appendChild(select);
+}
+
 function populateEditForm(todo) {
   document.getElementById('title').value = todo.title;
   document.getElementById('description').value = todo.description;
   document.getElementById('date').value = todo.date;
-  document.getElementById('select-project').value = todo.projectId;
   document.getElementById('priority').value = todo.priority;
+  document.getElementById('select-project').value = todo.projectId;
   document.querySelector('.bg-modal').style.display = 'flex';
 }
 
@@ -142,6 +160,7 @@ function editToDo(index) {
     query.setAttribute('id', 'edit');
     query.innerHTML = 'Update';
     const todo = getAToDo(todoId);
+    appendProject();
     populateEditForm(todo);
 
     document.getElementById('edit').addEventListener('click', () => {
