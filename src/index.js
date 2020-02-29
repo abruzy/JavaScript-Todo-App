@@ -1,7 +1,7 @@
 import ProjectStorage from './projectstorage';
 import addProject from './project';
 import {
-  addTodo, displayTable, addStrike, removeStrike,
+  addTodo, displayTable, addStrike,
 } from './tasks';
 
 
@@ -64,7 +64,7 @@ const strickThroughOnPageLoad = () => {
 
 document.querySelectorAll('li').forEach(element => {
   const a = element.firstChild;
-  a.addEventListener('click', function () {
+  a.addEventListener('click', function appendTableData() {
     const projectId = this.getAttribute('data-id');
     const tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
