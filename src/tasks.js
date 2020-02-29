@@ -6,8 +6,8 @@ function toDo(title, description, date, priority, projectId, done = false) {
     description,
     date,
     done,
-    projectId,
     priority,
+    projectId,
   };
 }
 
@@ -102,8 +102,8 @@ function deleteToDo(index) {
 }
 
 function updateToDo(todoId) {
-  const [titleVal, descVal, dateVal] = getInputValue();
-  const validateInput = validate(titleVal, descVal, dateVal);
+  const [titleVal, descVal, dateVal, prioriVal] = getInputValue();
+  const validateInput = validate(titleVal, descVal, dateVal, prioriVal);
 
   if (validateInput) {
     const ls = getLocalStorage();
@@ -111,6 +111,7 @@ function updateToDo(todoId) {
     todo.title = titleVal;
     todo.description = descVal;
     todo.date = dateVal;
+    todo.priority = prioriVal;
     ls[todoId] = todo;
     setLocalStorage(ls);
     refreshPage();
@@ -127,6 +128,8 @@ function populateEditForm(todo) {
   document.getElementById('title').value = todo.title;
   document.getElementById('description').value = todo.description;
   document.getElementById('date').value = todo.date;
+  document.getElementById('select-project').value = todo.projectId;
+  document.getElementById('priority').value = todo.priority;
   document.querySelector('.bg-modal').style.display = 'flex';
 }
 
@@ -179,19 +182,14 @@ function onPageLoad() {
 function doneState(index) {
   document.querySelector(`.done-${index}`).addEventListener('click', function strikeThrough() {
     const dataDone = this.getAttribute('data-done');
-    console.log(dataDone);
-    if (dataDone === false) {
-      // addStrike(index);
+    const parsedData = JSON.parse(dataDone);
+\    if (parsedData === false) {
+      addStrike(index);
       this.setAttribute('data-done', 'true');
-      const data = this.getAttribute('data-done');
-      console.log(data);
     } else {
-      // removeStrike(index);
+      removeStrike(index);
       this.setAttribute('data-done', 'false');
-      const data = this.getAttribute('data-done');
-      console.log(data);
     }
-    // refreshPage();
   });
 }
 
@@ -200,7 +198,6 @@ function displayTable(projectId) {
   const ls = getLocalStorage();
 
   ls.forEach((element, index) => {
-    console.log(element.projectId, projectId);
     if (element.projectId === projectId) {
       const tr = document.createElement('TR');
       tr.setAttribute('class', `todo-${index}`);

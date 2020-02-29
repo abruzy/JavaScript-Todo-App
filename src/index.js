@@ -48,7 +48,8 @@ document.querySelectorAll('li').forEach(element => {
   const a = element.firstChild;
   a.addEventListener('click', function () {
     const projectId = this.getAttribute('data-id');
-
-    displayTable(projectId);
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+    document.addEventListener('DOMContentLoaded', displayTable(projectId));
   })
 });
