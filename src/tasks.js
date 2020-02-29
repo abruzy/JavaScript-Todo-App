@@ -196,29 +196,30 @@ function doneState(index) {
 }
 
 
-function displayTable() {
+function displayTable(projectId) {
   const ls = getLocalStorage();
 
   ls.forEach((element, index) => {
-    const tr = document.createElement('TR');
-    tr.setAttribute('class', `todo-${index}`);
-    tr.innerHTML = `
-      <td data-column="title" class="text-${index}">${element.title}</td>
-      <td data-column="description" class="text-${index}">${element.description}</td>
-      <td data-column="date" class="text-${index}">${element.date}</td>
-      <td data-column="date" class="text-${index}">${element.priority}</td>
-      <td data-column="date" class="text-${index}">${element.projectId}</td>
-      <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
-      <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
-      <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index}">Done</a></td>
-    `;
-    document.querySelector('tbody').appendChild(tr);
-    doneState(index);
-    deleteToDo(index);
-    editToDo(index);
+    console.log(element.projectId, projectId);
+    if (element.projectId === projectId) {
+      const tr = document.createElement('TR');
+      tr.setAttribute('class', `todo-${index}`);
+      tr.innerHTML = `
+        <td data-column="title" class="text-${index}">${element.title}</td>
+        <td data-column="description" class="text-${index}">${element.description}</td>
+        <td data-column="date" class="text-${index}">${element.date}</td>
+        <td data-column="date" class="text-${index}">${element.priority}</td>
+        <td data-column="date" class="text-${index}">${element.projectId}</td>
+        <td data-column="edit"><a data-id=${index} class="btn btn-primary edit-${index}">Edit</a></td>
+        <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
+        <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index}">Done</a></td>
+      `;
+      document.querySelector('tbody').appendChild(tr);
+      doneState(index);
+      deleteToDo(index);
+      editToDo(index);
+    }
   });
 }
 
-displayTable();
-
-export { addTodo, onPageLoad };
+export { addTodo, displayTable };

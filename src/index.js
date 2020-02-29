@@ -1,4 +1,4 @@
-import { addTodo, onPageLoad } from './tasks';
+import { addTodo, displayTable } from './tasks';
 import addProject from './project';
 import ProjectStorage from './projectstorage';
 
@@ -45,8 +45,10 @@ document.querySelector('.project-button').addEventListener('click', () => {
 });
 
 document.querySelectorAll('li').forEach(element => {
-  const a = element.innerHTML;
-  // a.addEventListener('click', function(){
-  //   console.log(this)
-  // })
+  const a = element.firstChild;
+  a.addEventListener('click', function () {
+    const projectId = this.getAttribute('data-id');
+
+    displayTable(projectId);
+  })
 });
