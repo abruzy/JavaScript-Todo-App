@@ -1,12 +1,14 @@
 import ProjectStorage from './projectstorage';
 import addProject from './project';
-import { addTodo, displayTable, addStrike, removeStrike } from './tasks';
+import {
+  addTodo, displayTable, addStrike, removeStrike,
+} from './tasks';
 
 
 const appendProject = () => {
   const select = document.createElement('SELECT');
-  select.setAttribute('class', 'custom-select')
-  select.setAttribute('id', 'select-project')
+  select.setAttribute('class', 'custom-select');
+  select.setAttribute('id', 'select-project');
   const ps = ProjectStorage().getProject();
   ps.forEach((element, index) => {
     const option = document.createElement('OPTION');
@@ -15,12 +17,13 @@ const appendProject = () => {
     select.appendChild(option);
   });
 
-  const selectDiv = document.querySelector('.projects-select')
+  const selectDiv = document.querySelector('.projects-select');
   selectDiv.appendChild(select);
-}
+};
 
 document.getElementById('task-button').addEventListener('click',
   () => {
+    appendProject();
     document.querySelector('.task-modal').style.display = 'flex';
   });
 
@@ -40,7 +43,7 @@ document.querySelector('.add-project').addEventListener('click', () => {
 
 const refreshPage = () => {
   window.location.reload();
-}
+};
 
 document.querySelector('.project-button').addEventListener('click', () => {
   const name = document.querySelector('#project-name').value;
@@ -54,10 +57,10 @@ const strickThroughOnPageLoad = () => {
     const doneState = element.getAttribute('data-done');
     const id = element.getAttribute('data-id');
     if (JSON.parse(doneState) === true) {
-      addStrike(id)
+      addStrike(id);
     }
   });
-}
+};
 
 document.querySelectorAll('li').forEach(element => {
   const a = element.firstChild;
@@ -67,5 +70,5 @@ document.querySelectorAll('li').forEach(element => {
     tbody.innerHTML = '';
     document.addEventListener('DOMContentLoaded', displayTable(projectId));
     strickThroughOnPageLoad();
-  })
+  });
 });

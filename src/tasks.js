@@ -65,7 +65,6 @@ function validate(titleVal, descVal, dateVal, priorityVal, projectId) {
     || dateVal === ''
     || projectId === ''
     || priorityVal === '') {
-
     return false;
   }
   return true;
@@ -140,7 +139,7 @@ const appendProject = () => {
 
   const selectDiv = document.querySelector('.projects-select');
   selectDiv.appendChild(select);
-}
+};
 
 function populateEditForm(todo) {
   document.getElementById('title').value = todo.title;
@@ -227,4 +226,6 @@ function displayTable(projectId) {
   });
 }
 
-export { addTodo, displayTable, addStrike, removeStrike };
+export {
+  addTodo, displayTable, addStrike, removeStrike,
+};

@@ -1,31 +1,29 @@
-import ProjectStorage from './projectstorage'
+import ProjectStorage from './projectstorage';
 
 const todoProjects = [
   {
-    name: 'Food'
+    name: 'Food',
   },
   {
-    name: 'Clothing'
+    name: 'Clothing',
   },
   {
-    name: ' Shelter'
-  }
+    name: ' Shelter',
+  },
 ];
 
-const Project = (name) => {
-  return {
-    name
-  }
-}
+const Project = (name) => ({
+  name,
+});
 
 const localStorage = () => {
   const projects = ProjectStorage().getProject();
   if (projects !== null) {
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 const saveProject = (name) => {
   const project = Project(name);
@@ -38,32 +36,31 @@ const saveProject = (name) => {
     todoProjects.push(project);
     ps.setProject(todoProjects);
   }
-}
+};
 
 const validate = (name) => {
   if (name === '') {
-    document.querySelector('.error-message').innerHTML = 'Name cannot be blank'
+    document.querySelector('.error-message').innerHTML = 'Name cannot be blank';
   } else {
     saveProject(name);
   }
-}
+};
 
 const addProject = (name) => {
-  validate(name)
-}
+  validate(name);
+};
 
 (function showProjejcts(params) {
   const projectDiv = document.querySelector('.project-node');
   const ps = ProjectStorage().getProject();
   const ol = document.createElement('OL');
-  ol.setAttribute('class', 'project')
+  ol.setAttribute('class', 'project');
   ps.forEach((element, index) => {
-    const li = document.createElement('LI')
-    li.innerHTML = `<a href="#" class="project-${index}" data-id="${index}">${element.name}</a>`
+    const li = document.createElement('LI');
+    li.innerHTML = `<a href="#" class="project-${index}" data-id="${index}">${element.name}</a>`;
     ol.appendChild(li);
-
   });
   projectDiv.appendChild(ol);
-})();
+}());
 
 export default addProject;
