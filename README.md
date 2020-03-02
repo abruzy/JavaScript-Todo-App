@@ -56,11 +56,8 @@ Link to the [live]() version
 
 Todo lists are a staple in beginning webdev tutorials because they can be very simple. There is, however, a lot of room for improvement and many features that can be added.
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
-<p>Landing page</p>
-<img src="./dist/img/landingpage.png">
-
-<p>Menu page</p>
-<img src="./dist/img/menu.png">
+<p>Index page</p>
+<img src="./img/todo-ui.png">
 
 ### Built With
 This progam was made using this technologies
