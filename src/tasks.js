@@ -230,5 +230,8 @@ function displayTable(projectId) {
 }
 
 export {
-  addTodo, displayTable, addStrike, removeStrike,
+  addTodo,
+  displayTable,
+  addStrike,
+  removeStrike,
 };

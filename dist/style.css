@@ -140,7 +140,7 @@ th {
 
 .lineThrough {
   text-decoration: line-through;
-  color : #ccc;
+  color: #ccc;
 }
 
 .error-message {
@@ -148,8 +148,6 @@ th {
   font-size: 18px;
   font-weight: bold;
 }
-
-
 
 /* 
 Max width before this PARTICULAR table gets nasty

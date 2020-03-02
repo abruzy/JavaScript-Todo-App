@@ -1,7 +1,9 @@
 import ProjectStorage from './projectstorage';
 import addProject from './project';
 import {
-  addTodo, displayTable, addStrike,
+  addTodo,
+  displayTable,
+  addStrike,
 } from './tasks';
 
 const appendProject = () => {
