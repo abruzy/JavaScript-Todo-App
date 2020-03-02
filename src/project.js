@@ -39,7 +39,7 @@ const addProject = (name) => {
   validate(name);
 };
 
-(function showProjejcts(params) {
+(function showProjejcts() {
   const projectDiv = document.querySelector('.project-node');
   const ps = ProjectStorage().getProject();
   const ol = document.createElement('OL');

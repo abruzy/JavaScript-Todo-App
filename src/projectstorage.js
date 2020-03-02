@@ -20,8 +20,9 @@ const ProjectStorage = () => {
     const projects = localStorage.getItem('project');
     if (projects === null) {
       setProject(todoProjects);
-      return JSON.parse(todoProjects);
+      window.location.reload();
     }
+
     return JSON.parse(projects);
   };
 

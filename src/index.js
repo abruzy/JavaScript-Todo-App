@@ -4,7 +4,6 @@ import {
   addTodo, displayTable, addStrike,
 } from './tasks';
 
-
 const appendProject = () => {
   const select = document.createElement('SELECT');
   select.setAttribute('class', 'custom-select');

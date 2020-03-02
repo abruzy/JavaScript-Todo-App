@@ -203,12 +203,14 @@ function doneState(index) {
 
 function displayTable(projectId) {
   const ls = getLocalStorage();
-
-  ls.forEach((element, index) => {
-    if (element.projectId === projectId) {
-      const tr = document.createElement('TR');
-      tr.setAttribute('class', `todo-${index}`);
-      tr.innerHTML = `
+  if (ls === null) {
+    document.querySelector('.project-error').innerHTML = 'There are no task in this project';
+  } else {
+    ls.forEach((element, index) => {
+      if (element.projectId === projectId) {
+        const tr = document.createElement('TR');
+        tr.setAttribute('class', `todo-${index}`);
+        tr.innerHTML = `
         <td data-column="title" class="text-${index}">${element.title}</td>
         <td data-column="description" class="text-${index}">${element.description}</td>
         <td data-column="date" class="text-${index}">${element.date}</td>
@@ -218,12 +220,13 @@ function displayTable(projectId) {
         <td data-column="delete"><a data-id="${index}" class="btn btn-danger delete-${index}">Delete</a></td>
         <td data-column="done"><a data-id="${index}" data-done="${element.done}" class="btn btn-primary done-${index} done">Done</a></td>
       `;
-      document.querySelector('tbody').appendChild(tr);
-      doneState(index);
-      deleteToDo(index);
-      editToDo(index);
-    }
-  });
+        document.querySelector('tbody').appendChild(tr);
+        doneState(index);
+        deleteToDo(index);
+        editToDo(index);
+      }
+    });
+  }
 }
 
 export {
