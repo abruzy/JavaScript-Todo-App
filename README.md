@@ -85,7 +85,7 @@ git clone https://github.com/abruzy/JavaScript-Todo-App
 ## Usage
 1. create a project
 2. create a task under a project
-3. select projects to see task
+3. select project to see tasks in the project
 
 
 <!-- ROADMAP -->
