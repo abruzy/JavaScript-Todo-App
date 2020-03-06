@@ -52,7 +52,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Link to the [live]() version
+Link to the [live](https://raw.githack.com/abruzy/JavaScript-Todo-App/todo-app/dist/index.html) version
 
 Todo lists are a staple in beginning webdev tutorials because they can be very simple. There is, however, a lot of room for improvement and many features that can be added.
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
