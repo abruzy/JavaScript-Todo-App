@@ -39,17 +39,5 @@ const addProject = (name) => {
   validate(name);
 };
 
-(function showProjejcts() {
-  const projectDiv = document.querySelector('.project-node');
-  const ps = ProjectStorage().getProject();
-  const ol = document.createElement('OL');
-  ol.setAttribute('class', 'project');
-  ps.forEach((element, index) => {
-    const li = document.createElement('LI');
-    li.innerHTML = `<a href="#" class="project-${index}" data-id="${index}">${element.name}</a>`;
-    ol.appendChild(li);
-  });
-  projectDiv.appendChild(ol);
-}());
 
 export default addProject;

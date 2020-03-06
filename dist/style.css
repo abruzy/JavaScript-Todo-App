@@ -149,7 +149,10 @@ th {
   font-weight: bold;
 }
 
-
+.center {
+  width: 100%;
+  margin: 0 auto;
+}
 
 /* 
 Max width before this PARTICULAR table gets nasty

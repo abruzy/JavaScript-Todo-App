@@ -83,10 +83,9 @@ git clone https://github.com/abruzy/JavaScript-Todo-App
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-1. enter player's name
-2. click on start game button
-3. each player select a cell
-4. the same symbol on all rows, columns or diagonal indicate winning
+1. create a project
+2. create a task under a project
+3. select projects to see task
 
 
 <!-- ROADMAP -->

@@ -1,8 +1,10 @@
 import ProjectStorage from './projectstorage';
 import addProject from './project';
 import {
-  addTodo, displayTable, addStrike,
+  addTodo,
 } from './tasks';
+
+import { displayTable, addStrike } from './taskDom';
 
 const appendProject = () => {
   const select = document.createElement('SELECT');
@@ -60,6 +62,19 @@ const strickThroughOnPageLoad = () => {
     }
   });
 };
+
+(function showProjejcts() {
+  const projectDiv = document.querySelector('.project-node');
+  const ps = ProjectStorage().getProject();
+  const ol = document.createElement('OL');
+  ol.setAttribute('class', 'project');
+  ps.forEach((element, index) => {
+    const li = document.createElement('LI');
+    li.innerHTML = `<a href="#" class="project-${index}" data-id="${index}">${element.name}</a>`;
+    ol.appendChild(li);
+  });
+  projectDiv.appendChild(ol);
+}());
 
 document.querySelectorAll('li').forEach(element => {
   const a = element.firstChild;

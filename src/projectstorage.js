@@ -1,5 +1,4 @@
 const ProjectStorage = () => {
-
   const todoProjects = [
     {
       name: 'Food',
