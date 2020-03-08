@@ -27,9 +27,13 @@ const saveProject = (name) => {
   }
 };
 
+const errorMessage = () => {
+  document.querySelector('.error-message').innerHTML = 'Name cannot be blank';
+};
+
 const validate = (name) => {
   if (name === '') {
-    document.querySelector('.error-message').innerHTML = 'Name cannot be blank';
+    errorMessage();
   } else {
     saveProject(name);
   }
