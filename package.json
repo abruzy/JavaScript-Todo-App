@@ -1,0 +1,33 @@
+{
+  "name": "JavaScript-Todo-App",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
+    "lint:dev": "nodemon --exec \"npm run lint\" .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abruzy/JavaScript-Todo-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abruzy/JavaScript-Todo-App/issues"
+  },
+  "homepage": "https://github.com/abruzy/JavaScript-Todo-App#readme",
+  "devDependencies": {
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}

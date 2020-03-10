@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/201035c38b.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>JavaScript - Todo List App</title>
+</head>
+
+<body>
+  <!-- Hero Image -->
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Organizing maketh a man</h1>
+      <h3>Organize your task, by adding ToDo</h3>
+      <a href="#" id="task-button" class="button">Add a ToDo</a>
+    </div>
+  </section>
+
+  <!-- Modal Section -->
+
+  <div class="bg-modal task-modal">
+    <div class="modal-content">
+      <div class="close">+</div>
+      <h3 class="title text-center">Add a new Task</h3>
+      <form onsubmit="event.preventDefault();" autocomplete="off">
+        <div class="error-message"></div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" name="title" id="title" placeholder="title of your task" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description"
+            placeholder="write a short description of your task" required>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="priority">Priority</label>
+          </div>
+          <select class="custom-select" id="priority">
+            <option value="low">low</option>
+            <option value="medium">medium</option>
+            <option value="high">high</option>
+          </select>
+        </div>
+        <div class="input-group mb-3 projects-select">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect0">Projects</label>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" class="form-control" name="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+          <div class="text-center">
+            <button type="button" class="center-align btn btn-outline-success general-button" id="add">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="bg-modal project-modal">
+    <div class="modal-content">
+      <div class="close">+</div>
+      <h3 class="title text-center">Add a new Project</h3>
+      <form onsubmit="event.preventDefault();" autocomplete="off">
+        <div class="error-message"></div>
+        <div class="form-group">
+          <label for="date">Project Name</label>
+          <input type="text" class="form-control" name="project-name" id="project-name" required>
+        </div>
+
+        <div class="form-group">
+          <div class="text-center">
+            <button type="button" class="center-align btn btn-outline-success project-button">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Table Section -->
+  <div class="project-error"></div>
+  <div>
+    <p class="center">Select Project to see tasks</p>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="project-node">
+        <h5 class="project">Projects <a href="#" class="project add-project"><i class="fas fa-plus"></i></a>
+        </h5>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Priority</th>
+            <th>projectId</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Complete</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
