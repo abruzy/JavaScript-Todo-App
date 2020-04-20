@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "homepage": "https://abruzy.github.io/JavaScript-Todo-App",
   "main": "main.js",
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
     "lint:dev": "nodemon --exec \"npm run lint\" .",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production --watch",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --mode development --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -21,12 +24,12 @@
   "bugs": {
     "url": "https://github.com/abruzy/JavaScript-Todo-App/issues"
   },
-  "homepage": "https://github.com/abruzy/JavaScript-Todo-App#readme",
   "devDependencies": {
     "css-loader": "^3.5.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
+    "gh-pages": "^2.2.0",
     "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
