@@ -7,8 +7,9 @@
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
     "lint:dev": "nodemon --exec \"npm run lint\" .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production --watch",
+    "start": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "eslint-plugin-import": "^2.20.2",
     "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }

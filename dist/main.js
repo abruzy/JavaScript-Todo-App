@@ -1,1 +1,149 @@
-!function(e){var t={};function n(o){if(t[o])return t[o].exports;var c=t[o]={i:o,l:!1,exports:{}};return e[o].call(c.exports,c,c.exports,n),c.l=!0,c.exports}n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var c in e)n.d(o,c,function(t){return e[t]}.bind(null,c));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";n.r(t);var o=()=>{const e=[{name:"Food"},{name:"Clothing"},{name:" Shelter"}],t=e=>{localStorage.setItem("project",JSON.stringify(e))};return{setProject:t,getProject:()=>{const n=localStorage.getItem("project");return null===n&&(t(e),window.location.reload()),JSON.parse(n)},todoProjects:e}};const c=e=>{const t=(e=>({name:e}))(e),n=o();if(null!==o().getProject()){const e=n.getProject();e.push(t),n.setProject(e)}else{const e=o().todoProjects;e.push(t),n.setProject(e)}},r=e=>{""===e?document.querySelector(".error-message").innerHTML="Name cannot be blank":c(e)};var d=e=>{r(e)};const l=[];function i(e){localStorage.setItem("myTodo",JSON.stringify(e))}function a(){const e=localStorage.getItem("myTodo",null,2);return JSON.parse(e)}function u(){return null!=a()}function s(){window.location.reload()}function m(e,t,n,o,c){return""!==e&&""!==t&&""!==n&&""!==c&&""!==o}function p(){const e=document.getElementById("title").value,t=document.getElementById("description").value,n=document.getElementById("date").value,o=document.getElementById("select-project").value;return[e,t,n,document.getElementById("priority").value,o]}function y(){const[e,t,n,o,c]=p();if(m(e,t,n)){document.querySelector(".bg-modal").style.display="none",function(e){if(u()){const t=a();t.push(e),i(t)}else l.push(e),i(l);s()}(function(e,t,n,o,c,r=!1){return{title:e,description:t,date:n,done:r,priority:o,projectId:c}}(e,t,n,o,c))}}function f(e){document.querySelector(`.delete-${e}`).addEventListener("click",(function(){const e=this.getAttribute("data-id");document.querySelector(`.todo-${e}`).style.display="none",function(e){if(u()){const t=a();t.splice(e,1),i(t)}s()}(e)}))}function g(e){document.querySelector(`.edit-${e}`).addEventListener("click",(function(){const t=this.getAttribute("data-id"),n=document.querySelector(".general-button");n.removeEventListener("click",y),n.removeAttribute("id"),n.setAttribute("id","edit"),n.innerHTML="Update";const c=function(e){return a()[e]}(t);(()=>{const e=document.createElement("SELECT");e.setAttribute("class","custom-select"),e.setAttribute("id","select-project"),o().getProject().forEach((t,n)=>{const o=document.createElement("OPTION");o.setAttribute("value",`${n}`),o.innerHTML=`${t.name}`,e.appendChild(o)}),document.querySelector(".projects-select").appendChild(e)})(),function(e){document.getElementById("title").value=e.title,document.getElementById("description").value=e.description,document.getElementById("date").value=e.date,document.getElementById("priority").value=e.priority,document.getElementById("select-project").value=e.projectId,document.querySelector(".bg-modal").style.display="flex"}(c),document.getElementById("edit").addEventListener("click",()=>{!function(e){const[t,n,o,c]=p();if(m(t,n,o,c)){const r=a(),d=r[e];d.title=t,d.description=n,d.date=o,d.priority=c,r[e]=d,i(r),s()}}(e)})}))}function b(e){document.querySelectorAll(`.text-${e}`).forEach(e=>{e.classList.add("lineThrough")});const t=a();t[e].done=!0,i(t)}function E(e){document.querySelector(`.done-${e}`).addEventListener("click",(function(){const t=this.getAttribute("data-done");!1===JSON.parse(t)?(b(e),this.setAttribute("data-done","true")):(!function(e){document.querySelectorAll(`.text-${e}`).forEach(e=>{e.classList.remove("lineThrough")});const t=a();t[e].done=!1,i(t)}(e),this.setAttribute("data-done","false"))}))}document.getElementById("task-button").addEventListener("click",()=>{(()=>{const e=document.createElement("SELECT");e.setAttribute("class","custom-select"),e.setAttribute("id","select-project"),o().getProject().forEach((t,n)=>{const o=document.createElement("OPTION");o.setAttribute("value",`${n}`),o.innerHTML=`${t.name}`,e.appendChild(o)}),document.querySelector(".projects-select").appendChild(e)})(),document.querySelector(".task-modal").style.display="flex"}),document.querySelector(".close").addEventListener("click",()=>{document.querySelector(".bg-modal").style.display="none"}),document.addEventListener("DOMContentLoaded",()=>{document.getElementById("add").addEventListener("click",y)}),document.querySelector(".add-project").addEventListener("click",()=>{document.querySelector(".project-modal").style.display="flex"});document.querySelector(".project-button").addEventListener("click",()=>{const e=document.querySelector("#project-name").value;d(e),window.location.reload()});!function(){const e=document.querySelector(".project-node"),t=o().getProject(),n=document.createElement("OL");n.setAttribute("class","project"),t.forEach((e,t)=>{const o=document.createElement("LI");o.innerHTML=`<a href="#" class="project-${t}" data-id="${t}">${e.name}</a>`,n.appendChild(o)}),e.appendChild(n)}(),document.querySelectorAll("li").forEach(e=>{e.firstChild.addEventListener("click",(function(){const e=this.getAttribute("data-id");document.querySelector("tbody").innerHTML="",document.addEventListener("DOMContentLoaded",function(e){const t=a();null===t?document.querySelector(".project-error").innerHTML="There are no task in this project":t.forEach((t,n)=>{if(t.projectId===e){const e=document.createElement("TR");e.setAttribute("class",`todo-${n}`),e.innerHTML=`\n        <td data-column="title" class="text-${n}">${t.title}</td>\n        <td data-column="description" class="text-${n}">${t.description}</td>\n        <td data-column="date" class="text-${n}">${t.date}</td>\n        <td data-column="date" class="text-${n}">${t.priority}</td>\n        <td data-column="date" class="text-${n}">${t.projectId}</td>\n        <td data-column="edit"><a data-id=${n} class="btn btn-primary edit-${n}">Edit</a></td>\n        <td data-column="delete"><a data-id="${n}" class="btn btn-danger delete-${n}">Delete</a></td>\n        <td data-column="done"><a data-id="${n}" data-done="${t.done}" class="btn btn-primary done-${n} done">Done</a></td>\n      `,document.querySelector("tbody").appendChild(e),E(n),f(n),g(n)}})}(e)),document.querySelectorAll(".done").forEach(e=>{const t=e.getAttribute("data-done"),n=e.getAttribute("data-id");!0===JSON.parse(t)&&b(n)})}))})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _projectstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projectstorage */ \"./src/projectstorage.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/project.js\");\n/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasks */ \"./src/tasks.js\");\n/* harmony import */ var _taskDom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./taskDom */ \"./src/taskDom.js\");\n\n\n\n\n\n\nconst appendProject = () => {\n  const select = document.createElement('SELECT');\n  select.setAttribute('class', 'custom-select');\n  select.setAttribute('id', 'select-project');\n  const ps = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().getProject();\n  ps.forEach((element, index) => {\n    const option = document.createElement('OPTION');\n    option.setAttribute('value', `${index}`);\n    option.innerHTML = `${element.name}`;\n    select.appendChild(option);\n  });\n\n  const selectDiv = document.querySelector('.projects-select');\n  selectDiv.appendChild(select);\n};\n\ndocument.getElementById('task-button').addEventListener('click',\n  () => {\n    appendProject();\n    document.querySelector('.task-modal').style.display = 'flex';\n  });\n\ndocument.querySelector('.close').addEventListener('click',\n  () => {\n    document.querySelector('.bg-modal').style.display = 'none';\n  });\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  document.getElementById('add').addEventListener('click', _tasks__WEBPACK_IMPORTED_MODULE_2__[\"addTodo\"]);\n});\n\n\ndocument.querySelector('.add-project').addEventListener('click', () => {\n  document.querySelector('.project-modal').style.display = 'flex';\n});\n\nconst refreshPage = () => {\n  window.location.reload();\n};\n\ndocument.querySelector('.project-button').addEventListener('click', () => {\n  const name = document.querySelector('#project-name').value;\n  Object(_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(name);\n  refreshPage();\n});\n\nconst strickThroughOnPageLoad = () => {\n  const doneButtons = document.querySelectorAll('.done');\n  doneButtons.forEach((element) => {\n    const doneState = element.getAttribute('data-done');\n    const id = element.getAttribute('data-id');\n    if (JSON.parse(doneState) === true) {\n      Object(_taskDom__WEBPACK_IMPORTED_MODULE_3__[\"addStrike\"])(id);\n    }\n  });\n};\n\n(function showProjejcts() {\n  const projectDiv = document.querySelector('.project-node');\n  const ps = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().getProject();\n  const ol = document.createElement('OL');\n  ol.setAttribute('class', 'project');\n  ps.forEach((element, index) => {\n    const li = document.createElement('LI');\n    li.innerHTML = `<a href=\"#\" class=\"project-${index}\" data-id=\"${index}\">${element.name}</a>`;\n    ol.appendChild(li);\n  });\n  projectDiv.appendChild(ol);\n}());\n\ndocument.querySelectorAll('li').forEach(element => {\n  const a = element.firstChild;\n  a.addEventListener('click', function appendTableData() {\n    const projectId = this.getAttribute('data-id');\n    const tbody = document.querySelector('tbody');\n    tbody.innerHTML = '';\n    document.addEventListener('DOMContentLoaded', Object(_taskDom__WEBPACK_IMPORTED_MODULE_3__[\"displayTable\"])(projectId));\n    strickThroughOnPageLoad();\n  });\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/project.js":
+/*!************************!*\
+  !*** ./src/project.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _projectstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projectstorage */ \"./src/projectstorage.js\");\n\n\nconst Project = (name) => ({\n  name,\n});\n\nconst localStorage = () => {\n  const projects = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().getProject();\n  if (projects !== null) {\n    return true;\n  }\n\n  return false;\n};\n\nconst saveProject = (name) => {\n  const project = Project(name);\n  const ps = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n  if (localStorage()) {\n    const projects = ps.getProject();\n    projects.push(project);\n    ps.setProject(projects);\n  } else {\n    const tP = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().todoProjects;\n    tP.push(project);\n    ps.setProject(tP);\n  }\n};\n\nconst errorMessage = () => {\n  document.querySelector('.error-message').innerHTML = 'Name cannot be blank';\n};\n\nconst validate = (name) => {\n  if (name === '') {\n    errorMessage();\n  } else {\n    saveProject(name);\n  }\n};\n\nconst addProject = (name) => {\n  validate(name);\n};\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (addProject);\n\n//# sourceURL=webpack:///./src/project.js?");
+
+/***/ }),
+
+/***/ "./src/projectstorage.js":
+/*!*******************************!*\
+  !*** ./src/projectstorage.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst ProjectStorage = () => {\n  const todoProjects = [\n    {\n      name: 'Food',\n    },\n    {\n      name: 'Clothing',\n    },\n    {\n      name: ' Shelter',\n    },\n  ];\n\n  const setProject = (data) => {\n    localStorage.setItem('project', JSON.stringify(data));\n  };\n\n  const getProject = () => {\n    const projects = localStorage.getItem('project');\n    if (projects === null) {\n      setProject(todoProjects);\n      window.location.reload();\n    }\n\n    return JSON.parse(projects);\n  };\n\n  return {\n    setProject,\n    getProject,\n    todoProjects,\n  };\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (ProjectStorage);\n\n//# sourceURL=webpack:///./src/projectstorage.js?");
+
+/***/ }),
+
+/***/ "./src/taskDom.js":
+/*!************************!*\
+  !*** ./src/taskDom.js ***!
+  \************************/
+/*! exports provided: displayTable, addStrike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"displayTable\", function() { return displayTable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addStrike\", function() { return addStrike; });\n/* harmony import */ var _projectstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projectstorage */ \"./src/projectstorage.js\");\n/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tasks */ \"./src/tasks.js\");\n\n\n\nfunction deleteToDo(index) {\n  document.querySelector(`.delete-${index}`).addEventListener('click', function deleteButton() {\n    const todoId = this.getAttribute('data-id');\n    document.querySelector(`.todo-${todoId}`).style.display = 'none';\n    Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"deleteTask\"])(todoId);\n  });\n}\n\nconst appendProject = () => {\n  const select = document.createElement('SELECT');\n  select.setAttribute('class', 'custom-select');\n  select.setAttribute('id', 'select-project');\n  const ps = Object(_projectstorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().getProject();\n  ps.forEach((element, index) => {\n    const option = document.createElement('OPTION');\n    option.setAttribute('value', `${index}`);\n    option.innerHTML = `${element.name}`;\n    select.appendChild(option);\n  });\n\n  const selectDiv = document.querySelector('.projects-select');\n  selectDiv.appendChild(select);\n};\n\nfunction populateEditForm(todo) {\n  document.getElementById('title').value = todo.title;\n  document.getElementById('description').value = todo.description;\n  document.getElementById('date').value = todo.date;\n  document.getElementById('priority').value = todo.priority;\n  document.getElementById('select-project').value = todo.projectId;\n  document.querySelector('.bg-modal').style.display = 'flex';\n}\n\nfunction editToDo(index) {\n  document.querySelector(`.edit-${index}`).addEventListener('click', function editButton() {\n    const todoId = this.getAttribute('data-id');\n    const query = document.querySelector('.general-button');\n    query.removeEventListener('click', _tasks__WEBPACK_IMPORTED_MODULE_1__[\"addTodo\"]);\n    query.removeAttribute('id');\n    query.setAttribute('id', 'edit');\n    query.innerHTML = 'Update';\n    const todo = Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"getAToDo\"])(todoId);\n    appendProject();\n    populateEditForm(todo);\n\n    document.getElementById('edit').addEventListener('click', () => {\n      Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"updateToDo\"])(index);\n    });\n  });\n}\n\n\nfunction addStrike(index) {\n  document.querySelectorAll(`.text-${index}`).forEach((element) => {\n    element.classList.add('lineThrough');\n  });\n  const ls = Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"getLocalStorage\"])();\n  ls[index].done = true;\n  Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"setLocalStorage\"])(ls);\n}\n\nfunction removeStrike(index) {\n  document.querySelectorAll(`.text-${index}`).forEach((element) => {\n    element.classList.remove('lineThrough');\n  });\n  const ls = Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"getLocalStorage\"])();\n  ls[index].done = false;\n  Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"setLocalStorage\"])(ls);\n}\n\nfunction doneState(index) {\n  document.querySelector(`.done-${index}`).addEventListener('click', function strikeThrough() {\n    const dataDone = this.getAttribute('data-done');\n    const parsedData = JSON.parse(dataDone);\n    if (parsedData === false) {\n      addStrike(index);\n      this.setAttribute('data-done', 'true');\n    } else {\n      removeStrike(index);\n      this.setAttribute('data-done', 'false');\n    }\n  });\n}\n\nfunction displayTable(projectId) {\n  const ls = Object(_tasks__WEBPACK_IMPORTED_MODULE_1__[\"getLocalStorage\"])();\n  if (ls === null) {\n    document.querySelector('.project-error').innerHTML = 'There are no task in this project';\n  } else {\n    ls.forEach((element, index) => {\n      if (element.projectId === projectId) {\n        const tr = document.createElement('TR');\n        tr.setAttribute('class', `todo-${index}`);\n        tr.innerHTML = `\n        <td data-column=\"title\" class=\"text-${index}\">${element.title}</td>\n        <td data-column=\"description\" class=\"text-${index}\">${element.description}</td>\n        <td data-column=\"date\" class=\"text-${index}\">${element.date}</td>\n        <td data-column=\"date\" class=\"text-${index}\">${element.priority}</td>\n        <td data-column=\"date\" class=\"text-${index}\">${element.projectId}</td>\n        <td data-column=\"edit\"><a data-id=${index} class=\"btn btn-primary edit-${index}\">Edit</a></td>\n        <td data-column=\"delete\"><a data-id=\"${index}\" class=\"btn btn-danger delete-${index}\">Delete</a></td>\n        <td data-column=\"done\"><a data-id=\"${index}\" data-done=\"${element.done}\" class=\"btn btn-primary done-${index} done\">Done</a></td>\n      `;\n        document.querySelector('tbody').appendChild(tr);\n        doneState(index);\n        deleteToDo(index);\n        editToDo(index);\n      }\n    });\n  }\n}\n\n\n\n//# sourceURL=webpack:///./src/taskDom.js?");
+
+/***/ }),
+
+/***/ "./src/tasks.js":
+/*!**********************!*\
+  !*** ./src/tasks.js ***!
+  \**********************/
+/*! exports provided: getAToDo, updateToDo, deleteTask, addTodo, validate, saveTodo, refreshPage, checkStorage, getLocalStorage, setLocalStorage, toDo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAToDo\", function() { return getAToDo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"updateToDo\", function() { return updateToDo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteTask\", function() { return deleteTask; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addTodo\", function() { return addTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validate\", function() { return validate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"saveTodo\", function() { return saveTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"refreshPage\", function() { return refreshPage; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"checkStorage\", function() { return checkStorage; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getLocalStorage\", function() { return getLocalStorage; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setLocalStorage\", function() { return setLocalStorage; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toDo\", function() { return toDo; });\n\nconst myTodo = [];\n\nfunction toDo(title, description, date, priority, projectId, done = false) {\n  return {\n    title,\n    description,\n    date,\n    done,\n    priority,\n    projectId,\n  };\n}\n\nfunction setLocalStorage(data) {\n  localStorage.setItem('myTodo', JSON.stringify(data));\n}\n\nfunction getLocalStorage() {\n  const ls = localStorage.getItem('myTodo', null, 2);\n\n  return JSON.parse(ls);\n}\n\n\nfunction checkStorage() {\n  if (getLocalStorage() == null) {\n    return false;\n  }\n\n  return true;\n}\n\nfunction refreshPage() {\n  window.location.reload();\n}\n\nfunction saveTodo(todo) {\n  if (checkStorage()) {\n    const ls = getLocalStorage();\n    ls.push(todo);\n    setLocalStorage(ls);\n  } else {\n    myTodo.push(todo);\n    setLocalStorage(myTodo);\n  }\n\n  refreshPage();\n}\n\nfunction validate(titleVal, descVal, dateVal, priorityVal, projectId) {\n  if (titleVal === ''\n    || descVal === ''\n    || dateVal === ''\n    || projectId === ''\n    || priorityVal === '') {\n    return false;\n  }\n  return true;\n}\nfunction getInputValue() {\n  const titleVal = document.getElementById('title').value;\n  const descVal = document.getElementById('description').value;\n  const dateVal = document.getElementById('date').value;\n  const projectId = document.getElementById('select-project').value;\n  const priorityVal = document.getElementById('priority').value;\n\n  return [titleVal, descVal, dateVal, priorityVal, projectId];\n}\n\nfunction addTodo() {\n  const [titleVal, descVal, dateVal, priorityVal, projectId] = getInputValue();\n\n  const validateInput = validate(titleVal, descVal, dateVal);\n\n  if (validateInput) {\n    document.querySelector('.bg-modal').style.display = 'none';\n\n    const newTodo = toDo(titleVal, descVal, dateVal, priorityVal, projectId);\n\n    saveTodo(newTodo);\n  }\n}\n\nfunction deleteTask(todoId) {\n  if (checkStorage()) {\n    const ls = getLocalStorage();\n    ls.splice(todoId, 1);\n    setLocalStorage(ls);\n  }\n\n  refreshPage();\n}\n\nfunction updateToDo(todoId) {\n  const [titleVal, descVal, dateVal, prioriVal] = getInputValue();\n  const validateInput = validate(titleVal, descVal, dateVal, prioriVal);\n\n  if (validateInput) {\n    const ls = getLocalStorage();\n    const todo = ls[todoId];\n    todo.title = titleVal;\n    todo.description = descVal;\n    todo.date = dateVal;\n    todo.priority = prioriVal;\n    ls[todoId] = todo;\n    setLocalStorage(ls);\n    refreshPage();\n  }\n}\n\nfunction getAToDo(todoId) {\n  const ls = getLocalStorage();\n  const todo = ls[todoId];\n  return todo;\n}\n\n\n\n\n//# sourceURL=webpack:///./src/tasks.js?");
+
+/***/ })
+
+/******/ });
